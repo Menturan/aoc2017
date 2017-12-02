@@ -24,6 +24,10 @@ for idx, line in enumerate(spreedsheet):
 
 
 def part1():
+    """
+Calculate the spreadsheet's checksum. For each row, determine the difference between the largest value and the smallest value; the checksum is the sum of all of these differences.    :return sum:
+    :return sum:
+    """
     sum = 0
     for line in spreedsheet:
         sum += int(max(line)) - int(min(line))
@@ -31,7 +35,23 @@ def part1():
 
 
 def part2():
-    pass
+    """
+Find the only two numbers in each row where one evenly divides the other - that is, where the result of the division operation is a whole number. They would like you to find those numbers on each line, divide them, and add up each line's result.
+    :return sum:
+    """
+    sum = 0
+    for line in spreedsheet:
+        sum += find_evenly_divisible_values(line)
+    return sum
+
+
+def find_evenly_divisible_values(line: list):
+    for the_number in line:
+        line2 = line.copy()
+        line2.remove(the_number)
+        for number in line2:
+            if the_number % number == 0.0:
+                return the_number / number
 
 
 print(tree)
