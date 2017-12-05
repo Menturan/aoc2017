@@ -24,12 +24,15 @@ Puzzle
         for n in range(0, numbers_in_ring):
             value += 1
             ring.append(value)
-    for ring_number, ring in enumerate(matrix):
+    for ring_number, ring in enumerate(matrix, start=1):
         if searched_number in ring:
-            position_of_value_in_ring = ring.index(searched_number)
-            middle_idx_of_ring = int(len(ring) / 2)
-            steps_from_searched_value_to_middle_of_ring = abs(position_of_value_in_ring - middle_idx_of_ring)
-            steps = manhattan_distance((0, 0), (position_of_value_in_ring, ring_number))  # ring_number  + steps_from_searched_value_to_middle_of_ring
+            ring_sides = list(zip(*[iter(ring)] * int((len(ring) / 4))))
+            for side in ring_sides:
+                if searched_number in side:
+                    position_of_value_in_side = side.index(searched_number)
+                    middle_idx_of_ring = int(len(side) / 2)
+                    steps_from_searched_value_to_middle_of_ring = abs(position_of_value_in_side - middle_idx_of_ring)
+                    steps = ring_number + steps_from_searched_value_to_middle_of_ring  # manhattan_distance((0, 0), (position_of_value_in_side, ring_number))
     return steps
 
 
