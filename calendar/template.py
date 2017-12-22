@@ -1,7 +1,7 @@
 from christmas_tree import tree
 
 
-def part1():
+def part1(input) -> int:
     """
 Puzzle
     :return sum:
@@ -13,7 +13,7 @@ def part1_test():
     pass
 
 
-def part2():
+def part2(input) -> int:
     """
 Puzzle
     :return sum:
